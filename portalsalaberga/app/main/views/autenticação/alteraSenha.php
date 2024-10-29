@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+$_SESSION['recsenha'] = true;
+require_once('../../controllers/controller_sessao/verificar_sessao.php');
+verificarSessao(3600);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha | EEEP Salaberga</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="shortcut icon" href="img\Design sem nome.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../assets/img/Design sem nome.svg" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -257,12 +262,12 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('alterarSenhaForm');
             const togglePasswordIcons = document.querySelectorAll('.toggle-password');
 
             togglePasswordIcons.forEach(icon => {
-                icon.addEventListener('click', function () {
+                icon.addEventListener('click', function() {
                     const input = this.previousElementSibling.previousElementSibling;
                     const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
                     input.setAttribute('type', type);
@@ -271,7 +276,7 @@
                 });
             });
 
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const novaSenha = document.getElementById('novaSenha').value;
                 const confirmarSenha = document.getElementById('confirmarSenha').value;

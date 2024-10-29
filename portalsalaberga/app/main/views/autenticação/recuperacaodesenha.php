@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperação de Senha | EEEP Salaberga</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="shortcut icon" href="img\Design sem nome.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../assets/img/Design sem nome.svg" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -239,37 +239,55 @@
                 <img src="https://i.postimg.cc/ryxHRNkj/lavosier-nas-2.png" alt="Logo EEEP Salaberga" class="logo">
             </div>
             <h2>Recuperação de Senha</h2>
-            <form id="recuperacaoForm" action="../../controllers/controller_recsenha/controoller_recSenha.php" method="post">
+            <form id="recuperacaoForm" action="../../controllers/controller_recsenha/controller_recSenha.php" method="post">
                 <div class="input-group">
-                    <input type="email" name="phpemail" id="email" placeholder=" " required>
+                    <input type="email" name="Email" id="email" placeholder=" " required>
                     <label for="email">Email institucional</label>
                     <i class="fas fa-envelope"></i>
                 </div>
+
+                <?php
+                if (isset($_GET['login']) && $_GET['login'] == 'erro') {
+                ?>
+
+                    <div class="texto">
+                        Você já recuperou a senha recentemente. </br>
+                        Tente novamente mais tarde.
+                    </div>
+                    <style>
+                        .texto {
+                            color: red;
+                        }
+                    </style>
+
+                <?php
+                }
+                ?>
+                <?php
+                if (isset($_GET['login']) && $_GET['login'] == 'erro1') {
+                ?>
+
+                    <div class="texto">
+                        Email incorreto ou não cadastrado.</br>
+                        Tente novamente com um email válido.</br>
+                    </div>  
+                    <style>
+                        .texto {
+                            color: red;
+                        }
+                    </style>
+
+                <?php
+                }
+                ?>
+
                 <button type="submit" class="btn-confirmar" name="recsenha">Enviar link de recuperação</button>
             </form>
             <div class="back-to-login">
-                <a href="recusenha.html">Voltar para o login</a>
+                <a href="../../views/autenticação/login.php">Voltar para o login</a>
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('recuperacaoForm');
-
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const email = document.getElementById('email').value;
-
-                if (email) {
-                    alert('Um link de recuperação foi enviado para o seu email.');
-                    form.reset();
-                } else {
-                    alert('Por favor, insira seu email institucional.');
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
